@@ -1,16 +1,11 @@
-import type { SelectTypeProps } from "../interface/Interface";
+import type { TiposDeArchivo } from "../interface/Interface";
 
-export const TIPOS_ARCHIVOS: SelectTypeProps = [
-  { label: "PDF", value: "pdf" },
-  { label: "DOC", value: "doc" },
-  { label: "DOCX", value: "docx" },
-  { label: "RTF", value: "rtf" },
-  { label: "PPT", value: "ppt" },
-  { label: "PPTX", value: "pptx" },
-  { label: "JPEG", value: "jpeg" },
-  { label: "PNG", value: "png" },
-  { label: "JFIF", value: "jfif" },
-  { label: "XLS", value: "xls" },
-  { label: "XLSX", value: "xlsx" },
-  { label: "TXT", value: "txt" },
-];
+export const conversionOptions: Record<TiposDeArchivo, string[]> = {
+  png: ["jpg", "webp", "pdf", "base64"],
+  jpg: ["png", "webp", "pdf", "base64"],
+  jpeg: ["png", "webp", "pdf", "base64"],
+  webp: ["png", "jpg", "pdf", "base64"],
+  pdf: ["png", "jpg", "txt", "base64"],
+  txt: ["pdf", "csv", "base64"],
+  csv: ["txt", "xlsx", "pdf", "json", "base64"],
+};

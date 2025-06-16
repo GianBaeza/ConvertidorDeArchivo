@@ -21,6 +21,6 @@ export type TiposDeArchivo =
   | "webp"
   | "pdf"
   | "txt"
-  | "csv"
-  | "";
+  | "csv";
+
 export type SelectTypeProps = SelectTypeOption[];

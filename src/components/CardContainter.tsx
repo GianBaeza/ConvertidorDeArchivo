@@ -9,7 +9,7 @@ export default function CardContainter({
 }) {
   return (
     <div
-      className={`bg-white flex ${style} item-center justify-center p-4 rounded shadow w-[600px] h-[400px] px-4`}
+      className={`bg-white/70  ${style} p-4 rounded shadow w-[600px] min-h-[450px] md:h-[400px] px-4`}
     >
       {children}
     </div>

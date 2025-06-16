@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+.bg-card {
+  /*
+* Created with https://www.css-gradient.com
+* Gradient link: https://www.css-gradient.com/?c1=1f98f5&c2=ece7d6&gt=l&gd=dtr
+*/
+  background: #1f98f5;
+  background: linear-gradient(225deg, #1f98f5, #ece7d6);
+}
