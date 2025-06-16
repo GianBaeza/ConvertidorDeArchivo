@@ -8,7 +8,7 @@ import Loader from "./ui/Loader";
 import { servicios } from "./services/services";
 import { conversionOptions } from "./utils/constantes";
 import type { TiposDeArchivo } from "./interface/Interface";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { Notificaciones } from "./utils/notificaciones";
 
 type EstadosDeCarga = "" | "subiendo" | "cargando" | "exito" | "error";
@@ -31,7 +31,7 @@ function App() {
     const tipoArchivo = detectarTipoArchivo(e);
     if (
       !conversionOptions[
-        tipoArchivo.toLowerCase() as keyof typeof conversionOptions
+        tipoArchivo?.toLowerCase() as keyof typeof conversionOptions
       ]
     ) {
       Notificaciones.info(
@@ -39,8 +39,7 @@ function App() {
       ); // SI EL TIPO DE ARHIVO SUBIDO NO ES COMPATIBLE NO SIGUE EL CURSO , MOSTRAR LOS TIPOS COMPATIBLES
       return;
     }
-
-    setTipoArchivoSubido(tipoArchivo);
+    setTipoArchivoSubido(tipoArchivo?.toLowerCase() as TiposDeArchivo);
     const file = e.target.files?.[0];
     if (!file) return;
     setArchivoSubido(file);
