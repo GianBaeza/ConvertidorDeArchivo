@@ -8,6 +8,8 @@ import Loader from "./ui/Loader";
 import { servicios } from "./services/services";
 import { conversionOptions } from "./utils/constantes";
 import type { TiposDeArchivo } from "./interface/Interface";
+import { ToastContainer, toast } from "react-toastify";
+import { Notificaciones } from "./utils/notificaciones";
 
 type EstadosDeCarga = "" | "subiendo" | "cargando" | "exito" | "error";
 
@@ -32,7 +34,9 @@ function App() {
         tipoArchivo.toLowerCase() as keyof typeof conversionOptions
       ]
     ) {
-      alert("El tipo de archivo subido no es compatible para la conversión."); // SI EL TIPO DE ARHIVO SUBIDO NO ES COMPATIBLE NO SIGue EL CurSO , MOSTRAR LOS TIPOS COMPATIBLES
+      Notificaciones.info(
+        "El tipo de archivo subido no es compatible para la conversión."
+      ); // SI EL TIPO DE ARHIVO SUBIDO NO ES COMPATIBLE NO SIGUE EL CURSO , MOSTRAR LOS TIPOS COMPATIBLES
       return;
     }
 
@@ -52,7 +56,9 @@ function App() {
 
   const handleConvertirArchivo = async () => {
     if (!archivoSubido || !tipoDeArchivoSubido || !tipoDeArchivoAConvertir) {
-      alert("Debes subir un archivo y seleccionar el tipo a convertir.");
+      Notificaciones.info(
+        "Debes subir un archivo y seleccionar el tipo a convertir."
+      );
       return;
     }
 
@@ -68,6 +74,7 @@ function App() {
       setUrlConvertido(URL_DONWLOAD);
 
       setEstadosDeCarga("exito");
+      Notificaciones.exito("Archivo convertido exitosamente.");
     } catch (error) {
       console.error("Error al convertir archivo:", error);
       setEstadosDeCarga("error");
@@ -92,6 +99,18 @@ function App() {
         "w-screen h-screen  flex items-center justify-center rounded-lg shadow-lg"
       }
     >
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <CardContainter
         style={`flex flex-col bg-card  justify-center items-center gap-4  rounded-3xl shadow-lg ${
           !tipoDeArchivoSubido && "pt-32"
